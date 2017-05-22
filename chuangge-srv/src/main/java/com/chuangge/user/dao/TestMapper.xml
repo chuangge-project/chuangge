@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.user.dao.TestMapper" >
   <resultMap id="BaseResultMap" type="com.chuangge.user.model.domain.Test" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   
@@ -10,13 +10,17 @@
     select 
     t1.*
     from t_test t1
-    where t1.id = #{id,jdbcType=VARCHAR}
+    where t1.id = #{id,jdbcType=BIGINT}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_test
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
+  
+  <insert id="insert" parameterType="com.chuangge.user.model.domain.Test" >
+    insert into t_test(name) values(#{name,jdbcType=VARCHAR})
+  </insert>
   
   <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.user.model.domain.Test" >
     update t_test
@@ -25,7 +29,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   
   <select id="selectTestList" resultMap="BaseResultMap" parameterType="hashmap" >

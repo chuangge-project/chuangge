@@ -13,12 +13,14 @@ import com.chuangge.user.model.domain.Test;
  */
 public interface TestService {
 	
-    JSONObject deleteByPrimaryKey(String id);
+    JSONObject deleteByPrimaryKey(Long id);
 
     JSONObject selectByPrimaryKey(Map map);
 
     JSONObject updateByPrimaryKeySelective(Test record);
 
     JSONObject selectTestList(Map map);
+
+	JSONObject insert(Test record);
 } 
 

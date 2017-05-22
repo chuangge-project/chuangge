@@ -24,7 +24,7 @@ public class TestServiceImpl implements TestService {
 	private TestMapper testMapper;
 	
 	@Override
-	public JSONObject deleteByPrimaryKey(String id) {
+	public JSONObject deleteByPrimaryKey(Long id) {
 		testMapper.deleteByPrimaryKey(id);
 		return null;
 	}
@@ -41,6 +41,14 @@ public class TestServiceImpl implements TestService {
 	public JSONObject updateByPrimaryKeySelective(Test record) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public JSONObject insert(Test record) {
+		int i = testMapper.insert(record);
+		JSONObject json = new JSONObject();
+		json.put("aa", i);
+		return json;
 	}
 
 	@Override
