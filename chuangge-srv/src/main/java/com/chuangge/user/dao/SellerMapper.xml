@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.SellerMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.Seller" >
+    <id column="tb_seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="tb_name" property="name" jdbcType="VARCHAR" />
+    <result column="tb_duty_no" property="dutyNo" jdbcType="VARCHAR" />
+    <result column="tb_bank_branch_id" property="bankBranchId" jdbcType="INTEGER" />
+    <result column="tb_bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="tb_website" property="website" jdbcType="VARCHAR" />
+    <result column="tb_logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.seller_id as tb_seller_id, tb.name as tb_name, tb.duty_no as tb_duty_no, tb.bank_branch_id as tb_bank_branch_id, 
+    tb.bank_account as tb_bank_account, tb.website as tb_website, tb.logo_url as tb_logo_url, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time, tb.is_deleted as tb_is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seller tb
+    where tb.seller_id = #{sellerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seller
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.Seller" >
+    insert into seller (seller_id, name, duty_no, 
+      bank_branch_id, bank_account, website, 
+      logo_url, create_time, update_time, 
+      is_deleted)
+    values (#{sellerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{dutyNo,jdbcType=VARCHAR}, 
+      #{bankBranchId,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.Seller" >
+    insert into seller
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dutyNo != null" >
+        duty_no,
+      </if>
+      <if test="bankBranchId != null" >
+        bank_branch_id,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyNo != null" >
+        #{dutyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranchId != null" >
+        #{bankBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Seller" >
+    update seller
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyNo != null" >
+        duty_no = #{dutyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranchId != null" >
+        bank_branch_id = #{bankBranchId,jdbcType=INTEGER},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Seller" >
+    update seller
+    set name = #{name,jdbcType=VARCHAR},
+      duty_no = #{dutyNo,jdbcType=VARCHAR},
+      bank_branch_id = #{bankBranchId,jdbcType=INTEGER},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+</mapper>

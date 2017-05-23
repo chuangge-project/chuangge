@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.User" >
+    <result column="tb_id" property="id" jdbcType="BIGINT" />
+    <result column="tb_mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="tb_user_pass" property="userPass" jdbcType="VARCHAR" />
+    <result column="tb_pay_pass" property="payPass" jdbcType="VARCHAR" />
+    <result column="tb_is_setpwd" property="isSetpwd" jdbcType="TINYINT" />
+    <result column="tb_name" property="name" jdbcType="VARCHAR" />
+    <result column="tb_email" property="email" jdbcType="VARCHAR" />
+    <result column="tb_id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="tb_sex" property="sex" jdbcType="TINYINT" />
+    <result column="tb_status" property="status" jdbcType="TINYINT" />
+    <result column="tb_photo" property="photo" jdbcType="VARCHAR" />
+    <result column="tb_neal_name" property="nealName" jdbcType="VARCHAR" />
+    <result column="tb_birth_day" property="birthDay" jdbcType="DATE" />
+    <result column="tb_type" property="type" jdbcType="BIT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.chuangge.domain.User" >
+    insert into tuser (id, mobile, user_pass, 
+      pay_pass, is_setpwd, name, 
+      email, id_card, sex, 
+      status, photo, neal_name, 
+      birth_day, type, create_time, 
+      modify_time, is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
+      #{payPass,jdbcType=VARCHAR}, #{isSetpwd,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{photo,jdbcType=VARCHAR}, #{nealName,jdbcType=VARCHAR}, 
+      #{birthDay,jdbcType=DATE}, #{type,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.User" >
+    insert into tuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="userPass != null" >
+        user_pass,
+      </if>
+      <if test="payPass != null" >
+        pay_pass,
+      </if>
+      <if test="isSetpwd != null" >
+        is_setpwd,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="nealName != null" >
+        neal_name,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="payPass != null" >
+        #{payPass,jdbcType=VARCHAR},
+      </if>
+      <if test="isSetpwd != null" >
+        #{isSetpwd,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="nealName != null" >
+        #{nealName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=DATE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.SellerDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.SellerDetail" >
+    <id column="tb_detail_id" property="detailId" jdbcType="BIGINT" />
+    <result column="tb_seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="tb_introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="tb_promo_img" property="promoImg" jdbcType="VARCHAR" />
+    <result column="tb_biz_license_img" property="bizLicenseImg" jdbcType="VARCHAR" />
+    <result column="tb_remark" property="remark" jdbcType="VARCHAR" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.detail_id as tb_detail_id, tb.seller_id as tb_seller_id, tb.introduction as tb_introduction, 
+    tb.promo_img as tb_promo_img, tb.biz_license_img as tb_biz_license_img, tb.remark as tb_remark, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from seller_detail tb
+    where tb.detail_id = #{detailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from seller_detail
+    where detail_id = #{detailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.SellerDetail" >
+    insert into seller_detail (detail_id, seller_id, introduction, 
+      promo_img, biz_license_img, remark, 
+      create_time, update_time)
+    values (#{detailId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{introduction,jdbcType=VARCHAR}, 
+      #{promoImg,jdbcType=VARCHAR}, #{bizLicenseImg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.SellerDetail" >
+    insert into seller_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        detail_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="promoImg != null" >
+        promo_img,
+      </if>
+      <if test="bizLicenseImg != null" >
+        biz_license_img,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="promoImg != null" >
+        #{promoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bizLicenseImg != null" >
+        #{bizLicenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.SellerDetail" >
+    update seller_detail
+    <set >
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="promoImg != null" >
+        promo_img = #{promoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bizLicenseImg != null" >
+        biz_license_img = #{bizLicenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.SellerDetail" >
+    update seller_detail
+    set seller_id = #{sellerId,jdbcType=BIGINT},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      promo_img = #{promoImg,jdbcType=VARCHAR},
+      biz_license_img = #{bizLicenseImg,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where detail_id = #{detailId,jdbcType=BIGINT}
+  </update>
+</mapper>

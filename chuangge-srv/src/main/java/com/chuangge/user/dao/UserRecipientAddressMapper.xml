@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.UserRecipientAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.UserRecipientAddress" >
+    <id column="tb_addr_id" property="addrId" jdbcType="INTEGER" />
+    <result column="tb_user_id" property="userId" jdbcType="BIGINT" />
+    <result column="tb_district_id" property="districtId" jdbcType="INTEGER" />
+    <result column="tb_address" property="address" jdbcType="VARCHAR" />
+    <result column="tb_linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="tb_zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="tb_phone" property="phone" jdbcType="VARCHAR" />
+    <result column="tb_mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="tb_is_default_addr" property="isDefaultAddr" jdbcType="TINYINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.addr_id as tb_addr_id, tb.user_id as tb_user_id, tb.district_id as tb_district_id, 
+    tb.address as tb_address, tb.linkman as tb_linkman, tb.zip_code as tb_zip_code, tb.phone as tb_phone, 
+    tb.mobile as tb_mobile, tb.is_default_addr as tb_is_default_addr, tb.create_time as tb_create_time, 
+    tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_recipient_address tb
+    where tb.addr_id = #{addrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_recipient_address
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.UserRecipientAddress" >
+    insert into user_recipient_address (addr_id, user_id, district_id, 
+      address, linkman, zip_code, 
+      phone, mobile, is_default_addr, 
+      create_time, update_time)
+    values (#{addrId,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{districtId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{isDefaultAddr,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.UserRecipientAddress" >
+    insert into user_recipient_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        addr_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="isDefaultAddr != null" >
+        is_default_addr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        #{addrId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultAddr != null" >
+        #{isDefaultAddr,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.UserRecipientAddress" >
+    update user_recipient_address
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultAddr != null" >
+        is_default_addr = #{isDefaultAddr,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.UserRecipientAddress" >
+    update user_recipient_address
+    set user_id = #{userId,jdbcType=BIGINT},
+      district_id = #{districtId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      is_default_addr = #{isDefaultAddr,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </update>
+</mapper>
