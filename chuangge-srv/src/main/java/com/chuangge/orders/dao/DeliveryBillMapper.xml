@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.DeliveryBillMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.DeliveryBill" >
+  <resultMap id="BaseResultMap" type="com.chuangge.order.modle.domain.DeliveryBill" >
     <id column="tb_delivery_bill_id" property="deliveryBillId" jdbcType="BIGINT" />
     <result column="tb_delivery_bill_no" property="deliveryBillNo" jdbcType="VARCHAR" />
     <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
@@ -28,7 +28,7 @@
     delete from delivery_bill
     where delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.DeliveryBill" >
+  <insert id="insert" parameterType="com.chuangge.order.modle.domain.DeliveryBill" >
     insert into delivery_bill (delivery_bill_id, delivery_bill_no, goods_id, 
       warehouse_id, logistics, logistics_cmpy_id, 
       create_time, update_time, is_deleted
@@ -38,7 +38,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.DeliveryBill" >
+  <insert id="insertSelective" parameterType="com.chuangge.order.modle.domain.DeliveryBill" >
     insert into delivery_bill
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="deliveryBillId != null" >
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.DeliveryBill" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.order.modle.domain.DeliveryBill" >
     update delivery_bill
     <set >
       <if test="deliveryBillNo != null" >
@@ -129,7 +129,7 @@
     </set>
     where delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.DeliveryBill" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.order.modle.domain.DeliveryBill" >
     update delivery_bill
     set delivery_bill_no = #{deliveryBillNo,jdbcType=VARCHAR},
       goods_id = #{goodsId,jdbcType=BIGINT},

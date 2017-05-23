@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsInventoryMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsInventory" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.GoodsInventory" >
     <id column="tb_inventory_id" property="inventoryId" jdbcType="BIGINT" />
     <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="tb_warehouse_id" property="warehouseId" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from goods_inventory
     where inventory_id = #{inventoryId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.GoodsInventory" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.GoodsInventory" >
     insert into goods_inventory (inventory_id, goods_id, warehouse_id, 
       sales_quantity, road_quantity, min_quantity, 
       create_time, update_time)
@@ -34,7 +34,7 @@
       #{salesQuantity,jdbcType=INTEGER}, #{roadQuantity,jdbcType=INTEGER}, #{minQuantity,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsInventory" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.GoodsInventory" >
     insert into goods_inventory
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="inventoryId != null" >
@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsInventory" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.GoodsInventory" >
     update goods_inventory
     <set >
       <if test="goodsId != null" >
@@ -116,7 +116,7 @@
     </set>
     where inventory_id = #{inventoryId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsInventory" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.GoodsInventory" >
     update goods_inventory
     set goods_id = #{goodsId,jdbcType=BIGINT},
       warehouse_id = #{warehouseId,jdbcType=VARCHAR},

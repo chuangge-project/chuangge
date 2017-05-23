@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.CatBrandMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.CatBrand" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.CatBrand" >
     <id column="tb_id" property="id" jdbcType="INTEGER" />
     <result column="tb_cat_id" property="catId" jdbcType="INTEGER" />
     <result column="tb_brand_id" property="brandId" jdbcType="INTEGER" />
@@ -20,13 +20,13 @@
     delete from cat_brand
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.CatBrand" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.CatBrand" >
     insert into cat_brand (id, cat_id, brand_id, 
       create_time)
     values (#{id,jdbcType=INTEGER}, #{catId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.CatBrand" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.CatBrand" >
     insert into cat_brand
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.CatBrand" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.CatBrand" >
     update cat_brand
     <set >
       <if test="catId != null" >
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.CatBrand" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.CatBrand" >
     update cat_brand
     set cat_id = #{catId,jdbcType=INTEGER},
       brand_id = #{brandId,jdbcType=INTEGER},

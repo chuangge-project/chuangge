@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.Goods" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.Goods" >
     <id column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="tb_title" property="title" jdbcType="VARCHAR" />
     <result column="tb_brand_id" property="brandId" jdbcType="INTEGER" />
@@ -59,7 +59,7 @@
     delete from goods
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.Goods" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.Goods" >
     insert into goods (goods_id, title, brand_id, 
       brand_name, goods_code, cat_id, 
       seller_id, introduction_url, introduction_app_url, 
@@ -85,7 +85,7 @@
       #{creater,jdbcType=INTEGER}, #{updater,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.Goods" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.Goods" >
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="goodsId != null" >
@@ -290,7 +290,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Goods" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.Goods" >
     update goods
     <set >
       <if test="title != null" >
@@ -392,7 +392,7 @@
     </set>
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Goods" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.Goods" >
     update goods
     set title = #{title,jdbcType=VARCHAR},
       brand_id = #{brandId,jdbcType=INTEGER},

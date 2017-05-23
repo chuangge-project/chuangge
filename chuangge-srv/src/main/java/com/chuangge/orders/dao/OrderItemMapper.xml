@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.OrderItemMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.OrderItem" >
+  <resultMap id="BaseResultMap" type="com.chuangge.order.modle.domain.OrderItem" >
     <id column="tb_item_id" property="itemId" jdbcType="INTEGER" />
     <result column="tb_order_id" property="orderId" jdbcType="BIGINT" />
     <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
@@ -31,7 +31,7 @@
     delete from order_item
     where item_id = #{itemId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.OrderItem" >
+  <insert id="insert" parameterType="com.chuangge.order.modle.domain.OrderItem" >
     insert into order_item (item_id, order_id, goods_id, 
       goods_title, item_state, is_invoice, 
       img_url, price, quantity, 
@@ -43,7 +43,7 @@
       #{saleSpec,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.OrderItem" >
+  <insert id="insertSelective" parameterType="com.chuangge.order.modle.domain.OrderItem" >
     insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="itemId != null" >
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.OrderItem" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.order.modle.domain.OrderItem" >
     update order_item
     <set >
       <if test="orderId != null" >
@@ -161,7 +161,7 @@
     </set>
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.OrderItem" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.order.modle.domain.OrderItem" >
     update order_item
     set order_id = #{orderId,jdbcType=BIGINT},
       goods_id = #{goodsId,jdbcType=BIGINT},

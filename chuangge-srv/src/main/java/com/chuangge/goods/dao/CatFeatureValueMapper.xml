@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.CatFeatureValueMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.CatFeatureValue" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.CatFeatureValue" >
     <id column="tb_value_id" property="valueId" jdbcType="INTEGER" />
     <result column="tb_feature_id" property="featureId" jdbcType="INTEGER" />
     <result column="tb_val_name" property="valName" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from cat_feature_value
     where value_id = #{valueId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.CatFeatureValue" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.CatFeatureValue" >
     insert into cat_feature_value (value_id, feature_id, val_name, 
       sort_no, create_time, update_time
       )
@@ -31,7 +31,7 @@
       #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.CatFeatureValue" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.CatFeatureValue" >
     insert into cat_feature_value
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="valueId != null" >
@@ -74,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.CatFeatureValue" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.CatFeatureValue" >
     update cat_feature_value
     <set >
       <if test="featureId != null" >
@@ -95,7 +95,7 @@
     </set>
     where value_id = #{valueId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.CatFeatureValue" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.CatFeatureValue" >
     update cat_feature_value
     set feature_id = #{featureId,jdbcType=INTEGER},
       val_name = #{valName,jdbcType=VARCHAR},

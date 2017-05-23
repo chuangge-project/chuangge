@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.Order" >
+  <resultMap id="BaseResultMap" type="com.chuangge.order.modle.domain.Order" >
     <id column="tb_order_id" property="orderId" jdbcType="BIGINT" />
     <result column="tb_order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="tb_user_id" property="userId" jdbcType="BIGINT" />
@@ -33,7 +33,7 @@
     <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.chuangge.domain.Order" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.chuangge.order.modle.domain.Order" extends="BaseResultMap" >
     <result column="tb_invoice_title" property="invoiceTitle" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -64,7 +64,7 @@
     delete from torder
     where order_id = #{orderId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.Order" >
+  <insert id="insert" parameterType="com.chuangge.order.modle.domain.Order" >
     insert into torder (order_id, order_no, user_id, 
       seller_id, trade_type, buyer_message, 
       is_invoice, invoice_type, payment_method, 
@@ -88,7 +88,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
       #{invoiceTitle,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.Order" >
+  <insert id="insertSelective" parameterType="com.chuangge.order.modle.domain.Order" >
     insert into torder
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderId != null" >
@@ -281,7 +281,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Order" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.order.modle.domain.Order" >
     update torder
     <set >
       <if test="orderNo != null" >
@@ -377,7 +377,7 @@
     </set>
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.chuangge.domain.Order" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.chuangge.order.modle.domain.Order" >
     update torder
     set order_no = #{orderNo,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},
@@ -411,7 +411,7 @@
       invoice_title = #{invoiceTitle,jdbcType=LONGVARBINARY}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Order" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.order.modle.domain.Order" >
     update torder
     set order_no = #{orderNo,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},

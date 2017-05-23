@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsDeliveryMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsDelivery" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.GoodsDelivery" >
     <id column="tb_delivery_id" property="deliveryId" jdbcType="BIGINT" />
     <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="tb_order_id" property="orderId" jdbcType="BIGINT" />
@@ -27,7 +27,7 @@
     delete from goods_delivery
     where delivery_id = #{deliveryId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.GoodsDelivery" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.GoodsDelivery" >
     insert into goods_delivery (delivery_id, goods_id, order_id, 
       deliver_addr_id, refund_addr_id, freight_template_id, 
       create_time, update_time)
@@ -35,7 +35,7 @@
       #{deliverAddrId,jdbcType=INTEGER}, #{refundAddrId,jdbcType=INTEGER}, #{freightTemplateId,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsDelivery" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.GoodsDelivery" >
     insert into goods_delivery
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="deliveryId != null" >
@@ -90,7 +90,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsDelivery" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.GoodsDelivery" >
     update goods_delivery
     <set >
       <if test="goodsId != null" >
@@ -117,7 +117,7 @@
     </set>
     where delivery_id = #{deliveryId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsDelivery" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.GoodsDelivery" >
     update goods_delivery
     set goods_id = #{goodsId,jdbcType=BIGINT},
       order_id = #{orderId,jdbcType=BIGINT},

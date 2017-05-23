@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.BrandMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.Brand" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.Brand" >
     <id column="tb_brand_id" property="brandId" jdbcType="INTEGER" />
     <result column="tb_brand_name" property="brandName" jdbcType="VARCHAR" />
     <result column="tb_brand_desc" property="brandDesc" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
     delete from brand
     where brand_id = #{brandId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.Brand" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.Brand" >
     insert into brand (brand_id, brand_name, brand_desc, 
       is_enabled, create_time, update_time, 
       creater, updater, is_deleted
@@ -37,7 +37,7 @@
       #{creater,jdbcType=INTEGER}, #{updater,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.Brand" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.Brand" >
     insert into brand
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="brandId != null" >
@@ -98,7 +98,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Brand" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.Brand" >
     update brand
     <set >
       <if test="brandName != null" >
@@ -128,7 +128,7 @@
     </set>
     where brand_id = #{brandId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Brand" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.Brand" >
     update brand
     set brand_name = #{brandName,jdbcType=VARCHAR},
       brand_desc = #{brandDesc,jdbcType=VARCHAR},

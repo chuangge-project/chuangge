@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsPriceMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsPrice" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.GoodsPrice" >
     <id column="tb_price_id" property="priceId" jdbcType="BIGINT" />
     <result column="tb_goods_sku_id" property="goodsSkuId" jdbcType="BIGINT" />
     <result column="tb_price" property="price" jdbcType="DOUBLE" />
@@ -30,7 +30,7 @@
     delete from goods_price
     where price_id = #{priceId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.GoodsPrice" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.GoodsPrice" >
     insert into goods_price (price_id, goods_sku_id, price, 
       market_price, cost_price, prom_price, 
       is_prom, member_price, is_member, 
@@ -40,7 +40,7 @@
       #{isProm,jdbcType=TINYINT}, #{memberPrice,jdbcType=DOUBLE}, #{isMember,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsPrice" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.GoodsPrice" >
     insert into goods_price
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="priceId != null" >
@@ -113,7 +113,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsPrice" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.GoodsPrice" >
     update goods_price
     <set >
       <if test="goodsSkuId != null" >
@@ -149,7 +149,7 @@
     </set>
     where price_id = #{priceId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsPrice" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.GoodsPrice" >
     update goods_price
     set goods_sku_id = #{goodsSkuId,jdbcType=BIGINT},
       price = #{price,jdbcType=DOUBLE},

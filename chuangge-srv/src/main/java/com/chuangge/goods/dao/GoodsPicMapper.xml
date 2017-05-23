@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsPicMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsPic" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.GoodsPic" >
     <id column="tb_pic_id" property="picId" jdbcType="BIGINT" />
     <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="tb_goods_img" property="goodsImg" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
     delete from goods_pic
     where pic_id = #{picId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.GoodsPic" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.GoodsPic" >
     insert into goods_pic (pic_id, goods_id, goods_img, 
       goods_img_app, is_goods_img_default, is_goods_img_app_default, 
       sort_no, create_date, update_date
@@ -38,7 +38,7 @@
       #{sortNo,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsPic" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.GoodsPic" >
     insert into goods_pic
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="picId != null" >
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsPic" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.GoodsPic" >
     update goods_pic
     <set >
       <if test="goodsId != null" >
@@ -129,7 +129,7 @@
     </set>
     where pic_id = #{picId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsPic" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.GoodsPic" >
     update goods_pic
     set goods_id = #{goodsId,jdbcType=BIGINT},
       goods_img = #{goodsImg,jdbcType=VARCHAR},

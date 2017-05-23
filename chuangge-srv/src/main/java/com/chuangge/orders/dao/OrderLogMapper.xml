@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.OrderLogMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.OrderLog" >
+  <resultMap id="BaseResultMap" type="com.chuangge.order.modle.domain.OrderLog" >
     <id column="tb_order_log_id" property="orderLogId" jdbcType="BIGINT" />
     <result column="tb_order_id" property="orderId" jdbcType="BIGINT" />
     <result column="tb_operator_type" property="operatorType" jdbcType="TINYINT" />
@@ -29,7 +29,7 @@
     delete from order_log
     where order_log_id = #{orderLogId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.OrderLog" >
+  <insert id="insert" parameterType="com.chuangge.order.modle.domain.OrderLog" >
     insert into order_log (order_log_id, order_id, operator_type, 
       action_type, reason_type, previous_state, 
       current_state, operator, create_time, 
@@ -39,7 +39,7 @@
       #{currentState,jdbcType=TINYINT}, #{operator,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.OrderLog" >
+  <insert id="insertSelective" parameterType="com.chuangge.order.modle.domain.OrderLog" >
     insert into order_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderLogId != null" >
@@ -106,7 +106,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.OrderLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.order.modle.domain.OrderLog" >
     update order_log
     <set >
       <if test="orderId != null" >
@@ -139,7 +139,7 @@
     </set>
     where order_log_id = #{orderLogId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.OrderLog" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.order.modle.domain.OrderLog" >
     update order_log
     set order_id = #{orderId,jdbcType=BIGINT},
       operator_type = #{operatorType,jdbcType=TINYINT},

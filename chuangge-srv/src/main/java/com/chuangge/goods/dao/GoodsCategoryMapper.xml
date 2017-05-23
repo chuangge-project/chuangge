@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuangge.mapper.GoodsCategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsCategory" >
+  <resultMap id="BaseResultMap" type="com.chuangge.goods.modle.domain.GoodsCategory" >
     <id column="tb_cat_id" property="catId" jdbcType="INTEGER" />
     <result column="tb_cat_code" property="catCode" jdbcType="VARCHAR" />
     <result column="tb_cat_name" property="catName" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from goods_category
     where cat_id = #{catId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.chuangge.domain.GoodsCategory" >
+  <insert id="insert" parameterType="com.chuangge.goods.modle.domain.GoodsCategory" >
     insert into goods_category (cat_id, cat_code, cat_name, 
       parent_id, sort_no, create_time, 
       update_time, is_deleted)
@@ -34,7 +34,7 @@
       #{parentId,jdbcType=INTEGER}, #{sortNo,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsCategory" >
+  <insert id="insertSelective" parameterType="com.chuangge.goods.modle.domain.GoodsCategory" >
     insert into goods_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="catId != null" >
@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsCategory" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.goods.modle.domain.GoodsCategory" >
     update goods_category
     <set >
       <if test="catCode != null" >
@@ -116,7 +116,7 @@
     </set>
     where cat_id = #{catId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsCategory" >
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.goods.modle.domain.GoodsCategory" >
     update goods_category
     set cat_code = #{catCode,jdbcType=VARCHAR},
       cat_name = #{catName,jdbcType=VARCHAR},
