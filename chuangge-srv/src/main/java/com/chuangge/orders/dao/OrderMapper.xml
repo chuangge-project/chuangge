@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.Order" >
+    <id column="tb_order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="tb_order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="tb_user_id" property="userId" jdbcType="BIGINT" />
+    <result column="tb_seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="tb_trade_type" property="tradeType" jdbcType="TINYINT" />
+    <result column="tb_buyer_message" property="buyerMessage" jdbcType="VARCHAR" />
+    <result column="tb_is_invoice" property="isInvoice" jdbcType="TINYINT" />
+    <result column="tb_invoice_type" property="invoiceType" jdbcType="TINYINT" />
+    <result column="tb_payment_method" property="paymentMethod" jdbcType="TINYINT" />
+    <result column="tb_order_total_fee" property="orderTotalFee" jdbcType="DOUBLE" />
+    <result column="tb_ought_product_fee" property="oughtProductFee" jdbcType="DOUBLE" />
+    <result column="tb_ought_freight" property="oughtFreight" jdbcType="DOUBLE" />
+    <result column="tb_discount_amount" property="discountAmount" jdbcType="DOUBLE" />
+    <result column="tb_actually_fee" property="actuallyFee" jdbcType="DOUBLE" />
+    <result column="tb_cashback_fee" property="cashbackFee" jdbcType="DOUBLE" />
+    <result column="tb_cashback_date" property="cashbackDate" jdbcType="DATE" />
+    <result column="tb_cashback_status" property="cashbackStatus" jdbcType="TINYINT" />
+    <result column="tb_state" property="state" jdbcType="TINYINT" />
+    <result column="tb_closed_type" property="closedType" jdbcType="TINYINT" />
+    <result column="tb_is_cashback" property="isCashback" jdbcType="TINYINT" />
+    <result column="tb_is_customer_service" property="isCustomerService" jdbcType="TINYINT" />
+    <result column="tb_is_in_refund" property="isInRefund" jdbcType="TINYINT" />
+    <result column="tb_has_refund" property="hasRefund" jdbcType="TINYINT" />
+    <result column="tb_payment_state" property="paymentState" jdbcType="TINYINT" />
+    <result column="tb_payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="tb_recipient_duration" property="recipientDuration" jdbcType="INTEGER" />
+    <result column="tb_confirm_time" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.chuangge.domain.Order" extends="BaseResultMap" >
+    <result column="tb_invoice_title" property="invoiceTitle" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.order_id as tb_order_id, tb.order_no as tb_order_no, tb.user_id as tb_user_id, 
+    tb.seller_id as tb_seller_id, tb.trade_type as tb_trade_type, tb.buyer_message as tb_buyer_message, 
+    tb.is_invoice as tb_is_invoice, tb.invoice_type as tb_invoice_type, tb.payment_method as tb_payment_method, 
+    tb.order_total_fee as tb_order_total_fee, tb.ought_product_fee as tb_ought_product_fee, 
+    tb.ought_freight as tb_ought_freight, tb.discount_amount as tb_discount_amount, tb.actually_fee as tb_actually_fee, 
+    tb.cashback_fee as tb_cashback_fee, tb.cashback_date as tb_cashback_date, tb.cashback_status as tb_cashback_status, 
+    tb.state as tb_state, tb.closed_type as tb_closed_type, tb.is_cashback as tb_is_cashback, 
+    tb.is_customer_service as tb_is_customer_service, tb.is_in_refund as tb_is_in_refund, 
+    tb.has_refund as tb_has_refund, tb.payment_state as tb_payment_state, tb.payment_time as tb_payment_time, 
+    tb.recipient_duration as tb_recipient_duration, tb.confirm_time as tb_confirm_time, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time, tb.is_deleted as tb_is_deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    tb.invoice_title as tb_invoice_title
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from torder tb
+    where tb.order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from torder
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.Order" >
+    insert into torder (order_id, order_no, user_id, 
+      seller_id, trade_type, buyer_message, 
+      is_invoice, invoice_type, payment_method, 
+      order_total_fee, ought_product_fee, ought_freight, 
+      discount_amount, actually_fee, cashback_fee, 
+      cashback_date, cashback_status, state, 
+      closed_type, is_cashback, is_customer_service, 
+      is_in_refund, has_refund, payment_state, 
+      payment_time, recipient_duration, confirm_time, 
+      create_time, update_time, is_deleted, 
+      invoice_title)
+    values (#{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{sellerId,jdbcType=BIGINT}, #{tradeType,jdbcType=TINYINT}, #{buyerMessage,jdbcType=VARCHAR}, 
+      #{isInvoice,jdbcType=TINYINT}, #{invoiceType,jdbcType=TINYINT}, #{paymentMethod,jdbcType=TINYINT}, 
+      #{orderTotalFee,jdbcType=DOUBLE}, #{oughtProductFee,jdbcType=DOUBLE}, #{oughtFreight,jdbcType=DOUBLE}, 
+      #{discountAmount,jdbcType=DOUBLE}, #{actuallyFee,jdbcType=DOUBLE}, #{cashbackFee,jdbcType=DOUBLE}, 
+      #{cashbackDate,jdbcType=DATE}, #{cashbackStatus,jdbcType=TINYINT}, #{state,jdbcType=TINYINT}, 
+      #{closedType,jdbcType=TINYINT}, #{isCashback,jdbcType=TINYINT}, #{isCustomerService,jdbcType=TINYINT}, 
+      #{isInRefund,jdbcType=TINYINT}, #{hasRefund,jdbcType=TINYINT}, #{paymentState,jdbcType=TINYINT}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{recipientDuration,jdbcType=INTEGER}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
+      #{invoiceTitle,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.Order" >
+    insert into torder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="buyerMessage != null" >
+        buyer_message,
+      </if>
+      <if test="isInvoice != null" >
+        is_invoice,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method,
+      </if>
+      <if test="orderTotalFee != null" >
+        order_total_fee,
+      </if>
+      <if test="oughtProductFee != null" >
+        ought_product_fee,
+      </if>
+      <if test="oughtFreight != null" >
+        ought_freight,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="actuallyFee != null" >
+        actually_fee,
+      </if>
+      <if test="cashbackFee != null" >
+        cashback_fee,
+      </if>
+      <if test="cashbackDate != null" >
+        cashback_date,
+      </if>
+      <if test="cashbackStatus != null" >
+        cashback_status,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="closedType != null" >
+        closed_type,
+      </if>
+      <if test="isCashback != null" >
+        is_cashback,
+      </if>
+      <if test="isCustomerService != null" >
+        is_customer_service,
+      </if>
+      <if test="isInRefund != null" >
+        is_in_refund,
+      </if>
+      <if test="hasRefund != null" >
+        has_refund,
+      </if>
+      <if test="paymentState != null" >
+        payment_state,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="recipientDuration != null" >
+        recipient_duration,
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="buyerMessage != null" >
+        #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="isInvoice != null" >
+        #{isInvoice,jdbcType=TINYINT},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=TINYINT},
+      </if>
+      <if test="paymentMethod != null" >
+        #{paymentMethod,jdbcType=TINYINT},
+      </if>
+      <if test="orderTotalFee != null" >
+        #{orderTotalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="oughtProductFee != null" >
+        #{oughtProductFee,jdbcType=DOUBLE},
+      </if>
+      <if test="oughtFreight != null" >
+        #{oughtFreight,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="actuallyFee != null" >
+        #{actuallyFee,jdbcType=DOUBLE},
+      </if>
+      <if test="cashbackFee != null" >
+        #{cashbackFee,jdbcType=DOUBLE},
+      </if>
+      <if test="cashbackDate != null" >
+        #{cashbackDate,jdbcType=DATE},
+      </if>
+      <if test="cashbackStatus != null" >
+        #{cashbackStatus,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="closedType != null" >
+        #{closedType,jdbcType=TINYINT},
+      </if>
+      <if test="isCashback != null" >
+        #{isCashback,jdbcType=TINYINT},
+      </if>
+      <if test="isCustomerService != null" >
+        #{isCustomerService,jdbcType=TINYINT},
+      </if>
+      <if test="isInRefund != null" >
+        #{isInRefund,jdbcType=TINYINT},
+      </if>
+      <if test="hasRefund != null" >
+        #{hasRefund,jdbcType=TINYINT},
+      </if>
+      <if test="paymentState != null" >
+        #{paymentState,jdbcType=TINYINT},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recipientDuration != null" >
+        #{recipientDuration,jdbcType=INTEGER},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Order" >
+    update torder
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="buyerMessage != null" >
+        buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="isInvoice != null" >
+        is_invoice = #{isInvoice,jdbcType=TINYINT},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=TINYINT},
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method = #{paymentMethod,jdbcType=TINYINT},
+      </if>
+      <if test="orderTotalFee != null" >
+        order_total_fee = #{orderTotalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="oughtProductFee != null" >
+        ought_product_fee = #{oughtProductFee,jdbcType=DOUBLE},
+      </if>
+      <if test="oughtFreight != null" >
+        ought_freight = #{oughtFreight,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="actuallyFee != null" >
+        actually_fee = #{actuallyFee,jdbcType=DOUBLE},
+      </if>
+      <if test="cashbackFee != null" >
+        cashback_fee = #{cashbackFee,jdbcType=DOUBLE},
+      </if>
+      <if test="cashbackDate != null" >
+        cashback_date = #{cashbackDate,jdbcType=DATE},
+      </if>
+      <if test="cashbackStatus != null" >
+        cashback_status = #{cashbackStatus,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="closedType != null" >
+        closed_type = #{closedType,jdbcType=TINYINT},
+      </if>
+      <if test="isCashback != null" >
+        is_cashback = #{isCashback,jdbcType=TINYINT},
+      </if>
+      <if test="isCustomerService != null" >
+        is_customer_service = #{isCustomerService,jdbcType=TINYINT},
+      </if>
+      <if test="isInRefund != null" >
+        is_in_refund = #{isInRefund,jdbcType=TINYINT},
+      </if>
+      <if test="hasRefund != null" >
+        has_refund = #{hasRefund,jdbcType=TINYINT},
+      </if>
+      <if test="paymentState != null" >
+        payment_state = #{paymentState,jdbcType=TINYINT},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recipientDuration != null" >
+        recipient_duration = #{recipientDuration,jdbcType=INTEGER},
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title = #{invoiceTitle,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.chuangge.domain.Order" >
+    update torder
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      trade_type = #{tradeType,jdbcType=TINYINT},
+      buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      is_invoice = #{isInvoice,jdbcType=TINYINT},
+      invoice_type = #{invoiceType,jdbcType=TINYINT},
+      payment_method = #{paymentMethod,jdbcType=TINYINT},
+      order_total_fee = #{orderTotalFee,jdbcType=DOUBLE},
+      ought_product_fee = #{oughtProductFee,jdbcType=DOUBLE},
+      ought_freight = #{oughtFreight,jdbcType=DOUBLE},
+      discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      actually_fee = #{actuallyFee,jdbcType=DOUBLE},
+      cashback_fee = #{cashbackFee,jdbcType=DOUBLE},
+      cashback_date = #{cashbackDate,jdbcType=DATE},
+      cashback_status = #{cashbackStatus,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      closed_type = #{closedType,jdbcType=TINYINT},
+      is_cashback = #{isCashback,jdbcType=TINYINT},
+      is_customer_service = #{isCustomerService,jdbcType=TINYINT},
+      is_in_refund = #{isInRefund,jdbcType=TINYINT},
+      has_refund = #{hasRefund,jdbcType=TINYINT},
+      payment_state = #{paymentState,jdbcType=TINYINT},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      recipient_duration = #{recipientDuration,jdbcType=INTEGER},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      invoice_title = #{invoiceTitle,jdbcType=LONGVARBINARY}
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Order" >
+    update torder
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      trade_type = #{tradeType,jdbcType=TINYINT},
+      buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      is_invoice = #{isInvoice,jdbcType=TINYINT},
+      invoice_type = #{invoiceType,jdbcType=TINYINT},
+      payment_method = #{paymentMethod,jdbcType=TINYINT},
+      order_total_fee = #{orderTotalFee,jdbcType=DOUBLE},
+      ought_product_fee = #{oughtProductFee,jdbcType=DOUBLE},
+      ought_freight = #{oughtFreight,jdbcType=DOUBLE},
+      discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      actually_fee = #{actuallyFee,jdbcType=DOUBLE},
+      cashback_fee = #{cashbackFee,jdbcType=DOUBLE},
+      cashback_date = #{cashbackDate,jdbcType=DATE},
+      cashback_status = #{cashbackStatus,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      closed_type = #{closedType,jdbcType=TINYINT},
+      is_cashback = #{isCashback,jdbcType=TINYINT},
+      is_customer_service = #{isCustomerService,jdbcType=TINYINT},
+      is_in_refund = #{isInRefund,jdbcType=TINYINT},
+      has_refund = #{hasRefund,jdbcType=TINYINT},
+      payment_state = #{paymentState,jdbcType=TINYINT},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      recipient_duration = #{recipientDuration,jdbcType=INTEGER},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </update>
+</mapper>

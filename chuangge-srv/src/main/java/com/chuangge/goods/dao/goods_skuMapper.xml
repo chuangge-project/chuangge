@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.goods_skuMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.goods_sku" >
+    <id column="tb_sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="tb_code" property="code" jdbcType="VARCHAR" />
+    <result column="tb_bar_code" property="barCode" jdbcType="VARCHAR" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_feature_id" property="featureId" jdbcType="BIGINT" />
+    <result column="tb_feature_value_id" property="featureValueId" jdbcType="BIGINT" />
+    <result column="tb_inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="tb_inventory_warning" property="inventoryWarning" jdbcType="INTEGER" />
+    <result column="tb_is_main_sku" property="isMainSku" jdbcType="TINYINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.sku_id as tb_sku_id, tb.code as tb_code, tb.bar_code as tb_bar_code, tb.goods_id as tb_goods_id, 
+    tb.feature_id as tb_feature_id, tb.feature_value_id as tb_feature_value_id, tb.inventory as tb_inventory, 
+    tb.inventory_warning as tb_inventory_warning, tb.is_main_sku as tb_is_main_sku, tb.create_time as tb_create_time, 
+    tb.update_time as tb_update_time, tb.is_deleted as tb_is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_sku tb
+    where tb.sku_id = #{skuId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_sku
+    where sku_id = #{skuId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.goods_sku" >
+    insert into goods_sku (sku_id, code, bar_code, 
+      goods_id, feature_id, feature_value_id, 
+      inventory, inventory_warning, is_main_sku, 
+      create_time, update_time, is_deleted
+      )
+    values (#{skuId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=BIGINT}, #{featureId,jdbcType=BIGINT}, #{featureValueId,jdbcType=BIGINT}, 
+      #{inventory,jdbcType=INTEGER}, #{inventoryWarning,jdbcType=INTEGER}, #{isMainSku,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.goods_sku" >
+    insert into goods_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="barCode != null" >
+        bar_code,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="featureId != null" >
+        feature_id,
+      </if>
+      <if test="featureValueId != null" >
+        feature_value_id,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="inventoryWarning != null" >
+        inventory_warning,
+      </if>
+      <if test="isMainSku != null" >
+        is_main_sku,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="featureId != null" >
+        #{featureId,jdbcType=BIGINT},
+      </if>
+      <if test="featureValueId != null" >
+        #{featureValueId,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryWarning != null" >
+        #{inventoryWarning,jdbcType=INTEGER},
+      </if>
+      <if test="isMainSku != null" >
+        #{isMainSku,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.goods_sku" >
+    update goods_sku
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="featureId != null" >
+        feature_id = #{featureId,jdbcType=BIGINT},
+      </if>
+      <if test="featureValueId != null" >
+        feature_value_id = #{featureValueId,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null" >
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryWarning != null" >
+        inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+      </if>
+      <if test="isMainSku != null" >
+        is_main_sku = #{isMainSku,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.goods_sku" >
+    update goods_sku
+    set code = #{code,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      feature_id = #{featureId,jdbcType=BIGINT},
+      feature_value_id = #{featureValueId,jdbcType=BIGINT},
+      inventory = #{inventory,jdbcType=INTEGER},
+      inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+      is_main_sku = #{isMainSku,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where sku_id = #{skuId,jdbcType=BIGINT}
+  </update>
+</mapper>

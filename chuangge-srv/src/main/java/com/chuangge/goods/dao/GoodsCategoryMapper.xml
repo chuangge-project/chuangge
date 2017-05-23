@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsCategory" >
+    <id column="tb_cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="tb_cat_code" property="catCode" jdbcType="VARCHAR" />
+    <result column="tb_cat_name" property="catName" jdbcType="VARCHAR" />
+    <result column="tb_parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="tb_sort_no" property="sortNo" jdbcType="SMALLINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.cat_id as tb_cat_id, tb.cat_code as tb_cat_code, tb.cat_name as tb_cat_name, tb.parent_id as tb_parent_id, 
+    tb.sort_no as tb_sort_no, tb.create_time as tb_create_time, tb.update_time as tb_update_time, 
+    tb.is_deleted as tb_is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_category tb
+    where tb.cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_category
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.GoodsCategory" >
+    insert into goods_category (cat_id, cat_code, cat_name, 
+      parent_id, sort_no, create_time, 
+      update_time, is_deleted)
+    values (#{catId,jdbcType=INTEGER}, #{catCode,jdbcType=VARCHAR}, #{catName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{sortNo,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsCategory" >
+    insert into goods_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="catCode != null" >
+        cat_code,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="catCode != null" >
+        #{catCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsCategory" >
+    update goods_category
+    <set >
+      <if test="catCode != null" >
+        cat_code = #{catCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsCategory" >
+    update goods_category
+    set cat_code = #{catCode,jdbcType=VARCHAR},
+      cat_name = #{catName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      sort_no = #{sortNo,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+</mapper>

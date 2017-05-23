@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.DeliveryBillMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.DeliveryBill" >
+    <id column="tb_delivery_bill_id" property="deliveryBillId" jdbcType="BIGINT" />
+    <result column="tb_delivery_bill_no" property="deliveryBillNo" jdbcType="VARCHAR" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="tb_logistics" property="logistics" jdbcType="VARCHAR" />
+    <result column="tb_logistics_cmpy_id" property="logisticsCmpyId" jdbcType="INTEGER" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.delivery_bill_id as tb_delivery_bill_id, tb.delivery_bill_no as tb_delivery_bill_no, 
+    tb.goods_id as tb_goods_id, tb.warehouse_id as tb_warehouse_id, tb.logistics as tb_logistics, 
+    tb.logistics_cmpy_id as tb_logistics_cmpy_id, tb.create_time as tb_create_time, tb.update_time as tb_update_time, 
+    tb.is_deleted as tb_is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_bill tb
+    where tb.delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from delivery_bill
+    where delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.DeliveryBill" >
+    insert into delivery_bill (delivery_bill_id, delivery_bill_no, goods_id, 
+      warehouse_id, logistics, logistics_cmpy_id, 
+      create_time, update_time, is_deleted
+      )
+    values (#{deliveryBillId,jdbcType=BIGINT}, #{deliveryBillNo,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
+      #{warehouseId,jdbcType=INTEGER}, #{logistics,jdbcType=VARCHAR}, #{logisticsCmpyId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.DeliveryBill" >
+    insert into delivery_bill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deliveryBillId != null" >
+        delivery_bill_id,
+      </if>
+      <if test="deliveryBillNo != null" >
+        delivery_bill_no,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="logistics != null" >
+        logistics,
+      </if>
+      <if test="logisticsCmpyId != null" >
+        logistics_cmpy_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deliveryBillId != null" >
+        #{deliveryBillId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryBillNo != null" >
+        #{deliveryBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="logistics != null" >
+        #{logistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCmpyId != null" >
+        #{logisticsCmpyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.DeliveryBill" >
+    update delivery_bill
+    <set >
+      <if test="deliveryBillNo != null" >
+        delivery_bill_no = #{deliveryBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="logistics != null" >
+        logistics = #{logistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCmpyId != null" >
+        logistics_cmpy_id = #{logisticsCmpyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.DeliveryBill" >
+    update delivery_bill
+    set delivery_bill_no = #{deliveryBillNo,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      logistics = #{logistics,jdbcType=VARCHAR},
+      logistics_cmpy_id = #{logisticsCmpyId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where delivery_bill_id = #{deliveryBillId,jdbcType=BIGINT}
+  </update>
+</mapper>

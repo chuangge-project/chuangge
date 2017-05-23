@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsPrice" >
+    <id column="tb_price_id" property="priceId" jdbcType="BIGINT" />
+    <result column="tb_goods_sku_id" property="goodsSkuId" jdbcType="BIGINT" />
+    <result column="tb_price" property="price" jdbcType="DOUBLE" />
+    <result column="tb_market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="tb_cost_price" property="costPrice" jdbcType="DOUBLE" />
+    <result column="tb_prom_price" property="promPrice" jdbcType="DOUBLE" />
+    <result column="tb_is_prom" property="isProm" jdbcType="TINYINT" />
+    <result column="tb_member_price" property="memberPrice" jdbcType="DOUBLE" />
+    <result column="tb_is_member" property="isMember" jdbcType="TINYINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.price_id as tb_price_id, tb.goods_sku_id as tb_goods_sku_id, tb.price as tb_price, 
+    tb.market_price as tb_market_price, tb.cost_price as tb_cost_price, tb.prom_price as tb_prom_price, 
+    tb.is_prom as tb_is_prom, tb.member_price as tb_member_price, tb.is_member as tb_is_member, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_price tb
+    where tb.price_id = #{priceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_price
+    where price_id = #{priceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.GoodsPrice" >
+    insert into goods_price (price_id, goods_sku_id, price, 
+      market_price, cost_price, prom_price, 
+      is_prom, member_price, is_member, 
+      create_time, update_time)
+    values (#{priceId,jdbcType=BIGINT}, #{goodsSkuId,jdbcType=BIGINT}, #{price,jdbcType=DOUBLE}, 
+      #{marketPrice,jdbcType=DOUBLE}, #{costPrice,jdbcType=DOUBLE}, #{promPrice,jdbcType=DOUBLE}, 
+      #{isProm,jdbcType=TINYINT}, #{memberPrice,jdbcType=DOUBLE}, #{isMember,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsPrice" >
+    insert into goods_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        price_id,
+      </if>
+      <if test="goodsSkuId != null" >
+        goods_sku_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="promPrice != null" >
+        prom_price,
+      </if>
+      <if test="isProm != null" >
+        is_prom,
+      </if>
+      <if test="memberPrice != null" >
+        member_price,
+      </if>
+      <if test="isMember != null" >
+        is_member,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        #{priceId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSkuId != null" >
+        #{goodsSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="promPrice != null" >
+        #{promPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isProm != null" >
+        #{isProm,jdbcType=TINYINT},
+      </if>
+      <if test="memberPrice != null" >
+        #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isMember != null" >
+        #{isMember,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsPrice" >
+    update goods_price
+    <set >
+      <if test="goodsSkuId != null" >
+        goods_sku_id = #{goodsSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="promPrice != null" >
+        prom_price = #{promPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isProm != null" >
+        is_prom = #{isProm,jdbcType=TINYINT},
+      </if>
+      <if test="memberPrice != null" >
+        member_price = #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isMember != null" >
+        is_member = #{isMember,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where price_id = #{priceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsPrice" >
+    update goods_price
+    set goods_sku_id = #{goodsSkuId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DOUBLE},
+      market_price = #{marketPrice,jdbcType=DOUBLE},
+      cost_price = #{costPrice,jdbcType=DOUBLE},
+      prom_price = #{promPrice,jdbcType=DOUBLE},
+      is_prom = #{isProm,jdbcType=TINYINT},
+      member_price = #{memberPrice,jdbcType=DOUBLE},
+      is_member = #{isMember,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where price_id = #{priceId,jdbcType=BIGINT}
+  </update>
+</mapper>

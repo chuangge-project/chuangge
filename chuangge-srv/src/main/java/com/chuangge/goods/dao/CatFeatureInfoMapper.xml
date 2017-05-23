@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.CatFeatureInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.CatFeatureInfo" >
+    <id column="tb_feature_id" property="featureId" jdbcType="BIGINT" />
+    <result column="tb_cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="tb_feature_name" property="featureName" jdbcType="VARCHAR" />
+    <result column="tb_enum_type" property="enumType" jdbcType="TINYINT" />
+    <result column="tb_ui_type" property="uiType" jdbcType="TINYINT" />
+    <result column="tb_sort_no" property="sortNo" jdbcType="SMALLINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_Column_9" property="column9" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.feature_id as tb_feature_id, tb.cat_id as tb_cat_id, tb.feature_name as tb_feature_name, 
+    tb.enum_type as tb_enum_type, tb.ui_type as tb_ui_type, tb.sort_no as tb_sort_no, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time, tb.Column_9 as tb_Column_9
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cat_feature_info tb
+    where tb.feature_id = #{featureId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cat_feature_info
+    where feature_id = #{featureId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.CatFeatureInfo" >
+    insert into cat_feature_info (feature_id, cat_id, feature_name, 
+      enum_type, ui_type, sort_no, 
+      create_time, update_time, Column_9
+      )
+    values (#{featureId,jdbcType=BIGINT}, #{catId,jdbcType=INTEGER}, #{featureName,jdbcType=VARCHAR}, 
+      #{enumType,jdbcType=TINYINT}, #{uiType,jdbcType=TINYINT}, #{sortNo,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{column9,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.CatFeatureInfo" >
+    insert into cat_feature_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="featureId != null" >
+        feature_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="featureName != null" >
+        feature_name,
+      </if>
+      <if test="enumType != null" >
+        enum_type,
+      </if>
+      <if test="uiType != null" >
+        ui_type,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="column9 != null" >
+        Column_9,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="featureId != null" >
+        #{featureId,jdbcType=BIGINT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="featureName != null" >
+        #{featureName,jdbcType=VARCHAR},
+      </if>
+      <if test="enumType != null" >
+        #{enumType,jdbcType=TINYINT},
+      </if>
+      <if test="uiType != null" >
+        #{uiType,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="column9 != null" >
+        #{column9,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.CatFeatureInfo" >
+    update cat_feature_info
+    <set >
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="featureName != null" >
+        feature_name = #{featureName,jdbcType=VARCHAR},
+      </if>
+      <if test="enumType != null" >
+        enum_type = #{enumType,jdbcType=TINYINT},
+      </if>
+      <if test="uiType != null" >
+        ui_type = #{uiType,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="column9 != null" >
+        Column_9 = #{column9,jdbcType=CHAR},
+      </if>
+    </set>
+    where feature_id = #{featureId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.CatFeatureInfo" >
+    update cat_feature_info
+    set cat_id = #{catId,jdbcType=INTEGER},
+      feature_name = #{featureName,jdbcType=VARCHAR},
+      enum_type = #{enumType,jdbcType=TINYINT},
+      ui_type = #{uiType,jdbcType=TINYINT},
+      sort_no = #{sortNo,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      Column_9 = #{column9,jdbcType=CHAR}
+    where feature_id = #{featureId,jdbcType=BIGINT}
+  </update>
+</mapper>

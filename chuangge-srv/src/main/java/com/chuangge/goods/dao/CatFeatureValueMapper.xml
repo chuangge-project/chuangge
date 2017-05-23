@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.CatFeatureValueMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.CatFeatureValue" >
+    <id column="tb_value_id" property="valueId" jdbcType="INTEGER" />
+    <result column="tb_feature_id" property="featureId" jdbcType="INTEGER" />
+    <result column="tb_val_name" property="valName" jdbcType="VARCHAR" />
+    <result column="tb_sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.value_id as tb_value_id, tb.feature_id as tb_feature_id, tb.val_name as tb_val_name, 
+    tb.sort_no as tb_sort_no, tb.create_time as tb_create_time, tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cat_feature_value tb
+    where tb.value_id = #{valueId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cat_feature_value
+    where value_id = #{valueId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.CatFeatureValue" >
+    insert into cat_feature_value (value_id, feature_id, val_name, 
+      sort_no, create_time, update_time
+      )
+    values (#{valueId,jdbcType=INTEGER}, #{featureId,jdbcType=INTEGER}, #{valName,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.CatFeatureValue" >
+    insert into cat_feature_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="valueId != null" >
+        value_id,
+      </if>
+      <if test="featureId != null" >
+        feature_id,
+      </if>
+      <if test="valName != null" >
+        val_name,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="valueId != null" >
+        #{valueId,jdbcType=INTEGER},
+      </if>
+      <if test="featureId != null" >
+        #{featureId,jdbcType=INTEGER},
+      </if>
+      <if test="valName != null" >
+        #{valName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.CatFeatureValue" >
+    update cat_feature_value
+    <set >
+      <if test="featureId != null" >
+        feature_id = #{featureId,jdbcType=INTEGER},
+      </if>
+      <if test="valName != null" >
+        val_name = #{valName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where value_id = #{valueId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.CatFeatureValue" >
+    update cat_feature_value
+    set feature_id = #{featureId,jdbcType=INTEGER},
+      val_name = #{valName,jdbcType=VARCHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where value_id = #{valueId,jdbcType=INTEGER}
+  </update>
+</mapper>

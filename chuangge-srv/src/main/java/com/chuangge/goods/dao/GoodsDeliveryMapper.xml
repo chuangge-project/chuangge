@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsDeliveryMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsDelivery" >
+    <id column="tb_delivery_id" property="deliveryId" jdbcType="BIGINT" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="tb_deliver_addr_id" property="deliverAddrId" jdbcType="INTEGER" />
+    <result column="tb_refund_addr_id" property="refundAddrId" jdbcType="INTEGER" />
+    <result column="tb_freight_template_id" property="freightTemplateId" jdbcType="INTEGER" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.delivery_id as tb_delivery_id, tb.goods_id as tb_goods_id, tb.order_id as tb_order_id, 
+    tb.deliver_addr_id as tb_deliver_addr_id, tb.refund_addr_id as tb_refund_addr_id, 
+    tb.freight_template_id as tb_freight_template_id, tb.create_time as tb_create_time, 
+    tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_delivery tb
+    where tb.delivery_id = #{deliveryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_delivery
+    where delivery_id = #{deliveryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.GoodsDelivery" >
+    insert into goods_delivery (delivery_id, goods_id, order_id, 
+      deliver_addr_id, refund_addr_id, freight_template_id, 
+      create_time, update_time)
+    values (#{deliveryId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, 
+      #{deliverAddrId,jdbcType=INTEGER}, #{refundAddrId,jdbcType=INTEGER}, #{freightTemplateId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsDelivery" >
+    insert into goods_delivery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deliveryId != null" >
+        delivery_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="deliverAddrId != null" >
+        deliver_addr_id,
+      </if>
+      <if test="refundAddrId != null" >
+        refund_addr_id,
+      </if>
+      <if test="freightTemplateId != null" >
+        freight_template_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deliveryId != null" >
+        #{deliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliverAddrId != null" >
+        #{deliverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="refundAddrId != null" >
+        #{refundAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="freightTemplateId != null" >
+        #{freightTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsDelivery" >
+    update goods_delivery
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="deliverAddrId != null" >
+        deliver_addr_id = #{deliverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="refundAddrId != null" >
+        refund_addr_id = #{refundAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="freightTemplateId != null" >
+        freight_template_id = #{freightTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where delivery_id = #{deliveryId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsDelivery" >
+    update goods_delivery
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      deliver_addr_id = #{deliverAddrId,jdbcType=INTEGER},
+      refund_addr_id = #{refundAddrId,jdbcType=INTEGER},
+      freight_template_id = #{freightTemplateId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where delivery_id = #{deliveryId,jdbcType=BIGINT}
+  </update>
+</mapper>

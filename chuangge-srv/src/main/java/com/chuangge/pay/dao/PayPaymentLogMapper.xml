@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.PayPaymentLogMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.PayPaymentLog" >
+    <id column="tb_payment_id" property="paymentId" jdbcType="BIGINT" />
+    <result column="tb_payment_no" property="paymentNo" jdbcType="VARCHAR" />
+    <result column="tb_bank_serial" property="bankSerial" jdbcType="VARCHAR" />
+    <result column="tb_amount" property="amount" jdbcType="VARCHAR" />
+    <result column="tb_pay_message" property="payMessage" jdbcType="VARCHAR" />
+    <result column="tb_return_amount" property="returnAmount" jdbcType="DOUBLE" />
+    <result column="tb_pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="tb_pay_status" property="payStatus" jdbcType="TINYINT" />
+    <result column="tb_pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="tb_remark" property="remark" jdbcType="VARCHAR" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.payment_id as tb_payment_id, tb.payment_no as tb_payment_no, tb.bank_serial as tb_bank_serial, 
+    tb.amount as tb_amount, tb.pay_message as tb_pay_message, tb.return_amount as tb_return_amount, 
+    tb.pay_type as tb_pay_type, tb.pay_status as tb_pay_status, tb.pay_time as tb_pay_time, 
+    tb.remark as tb_remark, tb.create_time as tb_create_time, tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_payment_log tb
+    where tb.payment_id = #{paymentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pay_payment_log
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.PayPaymentLog" >
+    insert into pay_payment_log (payment_id, payment_no, bank_serial, 
+      amount, pay_message, return_amount, 
+      pay_type, pay_status, pay_time, 
+      remark, create_time, update_time
+      )
+    values (#{paymentId,jdbcType=BIGINT}, #{paymentNo,jdbcType=VARCHAR}, #{bankSerial,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=VARCHAR}, #{payMessage,jdbcType=VARCHAR}, #{returnAmount,jdbcType=DOUBLE}, 
+      #{payType,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.PayPaymentLog" >
+    insert into pay_payment_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        payment_id,
+      </if>
+      <if test="paymentNo != null" >
+        payment_no,
+      </if>
+      <if test="bankSerial != null" >
+        bank_serial,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="payMessage != null" >
+        pay_message,
+      </if>
+      <if test="returnAmount != null" >
+        return_amount,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentNo != null" >
+        #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSerial != null" >
+        #{bankSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="payMessage != null" >
+        #{payMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmount != null" >
+        #{returnAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.PayPaymentLog" >
+    update pay_payment_log
+    <set >
+      <if test="paymentNo != null" >
+        payment_no = #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSerial != null" >
+        bank_serial = #{bankSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="payMessage != null" >
+        pay_message = #{payMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmount != null" >
+        return_amount = #{returnAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.PayPaymentLog" >
+    update pay_payment_log
+    set payment_no = #{paymentNo,jdbcType=VARCHAR},
+      bank_serial = #{bankSerial,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      pay_message = #{payMessage,jdbcType=VARCHAR},
+      return_amount = #{returnAmount,jdbcType=DOUBLE},
+      pay_type = #{payType,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </update>
+</mapper>

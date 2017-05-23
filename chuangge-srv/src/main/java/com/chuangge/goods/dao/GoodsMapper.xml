@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.Goods" >
+    <id column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_title" property="title" jdbcType="VARCHAR" />
+    <result column="tb_brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="tb_brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="tb_goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="tb_cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="tb_seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="tb_introduction_url" property="introductionUrl" jdbcType="VARCHAR" />
+    <result column="tb_introduction_app_url" property="introductionAppUrl" jdbcType="VARCHAR" />
+    <result column="tb_inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="tb_inventory_warning" property="inventoryWarning" jdbcType="INTEGER" />
+    <result column="tb_price" property="price" jdbcType="DOUBLE" />
+    <result column="tb_market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="tb_cost_price" property="costPrice" jdbcType="DOUBLE" />
+    <result column="tb_prom_price" property="promPrice" jdbcType="DOUBLE" />
+    <result column="tb_is_prom" property="isProm" jdbcType="TINYINT" />
+    <result column="tb_member_price" property="memberPrice" jdbcType="DOUBLE" />
+    <result column="tb_is_member" property="isMember" jdbcType="TINYINT" />
+    <result column="tb_state" property="state" jdbcType="TINYINT" />
+    <result column="tb_freight_template_id" property="freightTemplateId" jdbcType="INTEGER" />
+    <result column="tb_return_mark" property="returnMark" jdbcType="TINYINT" />
+    <result column="tb_online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+    <result column="tb_offline_time" property="offlineTime" jdbcType="TIMESTAMP" />
+    <result column="tb_integral" property="integral" jdbcType="INTEGER" />
+    <result column="tb_height" property="height" jdbcType="REAL" />
+    <result column="tb_height_unit" property="heightUnit" jdbcType="VARCHAR" />
+    <result column="tb_is_recommend" property="isRecommend" jdbcType="TINYINT" />
+    <result column="tb_is_shop_recommend" property="isShopRecommend" jdbcType="TINYINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tb_creater" property="creater" jdbcType="INTEGER" />
+    <result column="tb_updater" property="updater" jdbcType="INTEGER" />
+    <result column="tb_is_deleted" property="isDeleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.goods_id as tb_goods_id, tb.title as tb_title, tb.brand_id as tb_brand_id, tb.brand_name as tb_brand_name, 
+    tb.goods_code as tb_goods_code, tb.cat_id as tb_cat_id, tb.seller_id as tb_seller_id, 
+    tb.introduction_url as tb_introduction_url, tb.introduction_app_url as tb_introduction_app_url, 
+    tb.inventory as tb_inventory, tb.inventory_warning as tb_inventory_warning, tb.price as tb_price, 
+    tb.market_price as tb_market_price, tb.cost_price as tb_cost_price, tb.prom_price as tb_prom_price, 
+    tb.is_prom as tb_is_prom, tb.member_price as tb_member_price, tb.is_member as tb_is_member, 
+    tb.state as tb_state, tb.freight_template_id as tb_freight_template_id, tb.return_mark as tb_return_mark, 
+    tb.online_time as tb_online_time, tb.offline_time as tb_offline_time, tb.integral as tb_integral, 
+    tb.height as tb_height, tb.height_unit as tb_height_unit, tb.is_recommend as tb_is_recommend, 
+    tb.is_shop_recommend as tb_is_shop_recommend, tb.create_time as tb_create_time, tb.update_time as tb_update_time, 
+    tb.creater as tb_creater, tb.updater as tb_updater, tb.is_deleted as tb_is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods tb
+    where tb.goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.Goods" >
+    insert into goods (goods_id, title, brand_id, 
+      brand_name, goods_code, cat_id, 
+      seller_id, introduction_url, introduction_app_url, 
+      inventory, inventory_warning, price, 
+      market_price, cost_price, prom_price, 
+      is_prom, member_price, is_member, 
+      state, freight_template_id, return_mark, 
+      online_time, offline_time, integral, 
+      height, height_unit, is_recommend, 
+      is_shop_recommend, create_time, update_time, 
+      creater, updater, is_deleted
+      )
+    values (#{goodsId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{brandName,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, 
+      #{sellerId,jdbcType=INTEGER}, #{introductionUrl,jdbcType=VARCHAR}, #{introductionAppUrl,jdbcType=VARCHAR}, 
+      #{inventory,jdbcType=INTEGER}, #{inventoryWarning,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{marketPrice,jdbcType=DOUBLE}, #{costPrice,jdbcType=DOUBLE}, #{promPrice,jdbcType=DOUBLE}, 
+      #{isProm,jdbcType=TINYINT}, #{memberPrice,jdbcType=DOUBLE}, #{isMember,jdbcType=TINYINT}, 
+      #{state,jdbcType=TINYINT}, #{freightTemplateId,jdbcType=INTEGER}, #{returnMark,jdbcType=TINYINT}, 
+      #{onlineTime,jdbcType=TIMESTAMP}, #{offlineTime,jdbcType=TIMESTAMP}, #{integral,jdbcType=INTEGER}, 
+      #{height,jdbcType=REAL}, #{heightUnit,jdbcType=VARCHAR}, #{isRecommend,jdbcType=TINYINT}, 
+      #{isShopRecommend,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=INTEGER}, #{updater,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="introductionUrl != null" >
+        introduction_url,
+      </if>
+      <if test="introductionAppUrl != null" >
+        introduction_app_url,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="inventoryWarning != null" >
+        inventory_warning,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="promPrice != null" >
+        prom_price,
+      </if>
+      <if test="isProm != null" >
+        is_prom,
+      </if>
+      <if test="memberPrice != null" >
+        member_price,
+      </if>
+      <if test="isMember != null" >
+        is_member,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="freightTemplateId != null" >
+        freight_template_id,
+      </if>
+      <if test="returnMark != null" >
+        return_mark,
+      </if>
+      <if test="onlineTime != null" >
+        online_time,
+      </if>
+      <if test="offlineTime != null" >
+        offline_time,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="heightUnit != null" >
+        height_unit,
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="isShopRecommend != null" >
+        is_shop_recommend,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="updater != null" >
+        updater,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="introductionUrl != null" >
+        #{introductionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="introductionAppUrl != null" >
+        #{introductionAppUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryWarning != null" >
+        #{inventoryWarning,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="promPrice != null" >
+        #{promPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isProm != null" >
+        #{isProm,jdbcType=TINYINT},
+      </if>
+      <if test="memberPrice != null" >
+        #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isMember != null" >
+        #{isMember,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="freightTemplateId != null" >
+        #{freightTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="returnMark != null" >
+        #{returnMark,jdbcType=TINYINT},
+      </if>
+      <if test="onlineTime != null" >
+        #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineTime != null" >
+        #{offlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=REAL},
+      </if>
+      <if test="heightUnit != null" >
+        #{heightUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isShopRecommend != null" >
+        #{isShopRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=INTEGER},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Goods" >
+    update goods
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="introductionUrl != null" >
+        introduction_url = #{introductionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="introductionAppUrl != null" >
+        introduction_app_url = #{introductionAppUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null" >
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryWarning != null" >
+        inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="promPrice != null" >
+        prom_price = #{promPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isProm != null" >
+        is_prom = #{isProm,jdbcType=TINYINT},
+      </if>
+      <if test="memberPrice != null" >
+        member_price = #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isMember != null" >
+        is_member = #{isMember,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="freightTemplateId != null" >
+        freight_template_id = #{freightTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="returnMark != null" >
+        return_mark = #{returnMark,jdbcType=TINYINT},
+      </if>
+      <if test="onlineTime != null" >
+        online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineTime != null" >
+        offline_time = #{offlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=REAL},
+      </if>
+      <if test="heightUnit != null" >
+        height_unit = #{heightUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isShopRecommend != null" >
+        is_shop_recommend = #{isShopRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=INTEGER},
+      </if>
+      <if test="updater != null" >
+        updater = #{updater,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Goods" >
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=INTEGER},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      introduction_url = #{introductionUrl,jdbcType=VARCHAR},
+      introduction_app_url = #{introductionAppUrl,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      market_price = #{marketPrice,jdbcType=DOUBLE},
+      cost_price = #{costPrice,jdbcType=DOUBLE},
+      prom_price = #{promPrice,jdbcType=DOUBLE},
+      is_prom = #{isProm,jdbcType=TINYINT},
+      member_price = #{memberPrice,jdbcType=DOUBLE},
+      is_member = #{isMember,jdbcType=TINYINT},
+      state = #{state,jdbcType=TINYINT},
+      freight_template_id = #{freightTemplateId,jdbcType=INTEGER},
+      return_mark = #{returnMark,jdbcType=TINYINT},
+      online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      offline_time = #{offlineTime,jdbcType=TIMESTAMP},
+      integral = #{integral,jdbcType=INTEGER},
+      height = #{height,jdbcType=REAL},
+      height_unit = #{heightUnit,jdbcType=VARCHAR},
+      is_recommend = #{isRecommend,jdbcType=TINYINT},
+      is_shop_recommend = #{isShopRecommend,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=INTEGER},
+      updater = #{updater,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

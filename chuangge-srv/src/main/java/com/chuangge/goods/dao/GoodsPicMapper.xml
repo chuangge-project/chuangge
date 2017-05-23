@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsPicMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsPic" >
+    <id column="tb_pic_id" property="picId" jdbcType="BIGINT" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_goods_img" property="goodsImg" jdbcType="VARCHAR" />
+    <result column="tb_goods_img_app" property="goodsImgApp" jdbcType="VARCHAR" />
+    <result column="tb_is_goods_img_default" property="isGoodsImgDefault" jdbcType="TINYINT" />
+    <result column="tb_is_goods_img_app_default" property="isGoodsImgAppDefault" jdbcType="TINYINT" />
+    <result column="tb_sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="tb_create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="tb_update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.pic_id as tb_pic_id, tb.goods_id as tb_goods_id, tb.goods_img as tb_goods_img, 
+    tb.goods_img_app as tb_goods_img_app, tb.is_goods_img_default as tb_is_goods_img_default, 
+    tb.is_goods_img_app_default as tb_is_goods_img_app_default, tb.sort_no as tb_sort_no, 
+    tb.create_date as tb_create_date, tb.update_date as tb_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_pic tb
+    where tb.pic_id = #{picId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_pic
+    where pic_id = #{picId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.GoodsPic" >
+    insert into goods_pic (pic_id, goods_id, goods_img, 
+      goods_img_app, is_goods_img_default, is_goods_img_app_default, 
+      sort_no, create_date, update_date
+      )
+    values (#{picId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsImg,jdbcType=VARCHAR}, 
+      #{goodsImgApp,jdbcType=VARCHAR}, #{isGoodsImgDefault,jdbcType=TINYINT}, #{isGoodsImgAppDefault,jdbcType=TINYINT}, 
+      #{sortNo,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsPic" >
+    insert into goods_pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="picId != null" >
+        pic_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsImg != null" >
+        goods_img,
+      </if>
+      <if test="goodsImgApp != null" >
+        goods_img_app,
+      </if>
+      <if test="isGoodsImgDefault != null" >
+        is_goods_img_default,
+      </if>
+      <if test="isGoodsImgAppDefault != null" >
+        is_goods_img_app_default,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="picId != null" >
+        #{picId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsImg != null" >
+        #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImgApp != null" >
+        #{goodsImgApp,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoodsImgDefault != null" >
+        #{isGoodsImgDefault,jdbcType=TINYINT},
+      </if>
+      <if test="isGoodsImgAppDefault != null" >
+        #{isGoodsImgAppDefault,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsPic" >
+    update goods_pic
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsImg != null" >
+        goods_img = #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImgApp != null" >
+        goods_img_app = #{goodsImgApp,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoodsImgDefault != null" >
+        is_goods_img_default = #{isGoodsImgDefault,jdbcType=TINYINT},
+      </if>
+      <if test="isGoodsImgAppDefault != null" >
+        is_goods_img_app_default = #{isGoodsImgAppDefault,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pic_id = #{picId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsPic" >
+    update goods_pic
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_img = #{goodsImg,jdbcType=VARCHAR},
+      goods_img_app = #{goodsImgApp,jdbcType=VARCHAR},
+      is_goods_img_default = #{isGoodsImgDefault,jdbcType=TINYINT},
+      is_goods_img_app_default = #{isGoodsImgAppDefault,jdbcType=TINYINT},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where pic_id = #{picId,jdbcType=BIGINT}
+  </update>
+</mapper>

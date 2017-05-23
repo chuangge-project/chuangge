@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.ShopcartMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.Shopcart" >
+    <id column="tb_cart_id" property="cartId" jdbcType="BIGINT" />
+    <result column="tb_user_id" property="userId" jdbcType="BIGINT" />
+    <result column="tb_seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="tb_goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="tb_quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="tb_status" property="status" jdbcType="TINYINT" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.cart_id as tb_cart_id, tb.user_id as tb_user_id, tb.seller_id as tb_seller_id, 
+    tb.goods_id as tb_goods_id, tb.goods_price as tb_goods_price, tb.goods_name as tb_goods_name, 
+    tb.quantity as tb_quantity, tb.status as tb_status, tb.create_time as tb_create_time, 
+    tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shopcart tb
+    where tb.cart_id = #{cartId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shopcart
+    where cart_id = #{cartId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.Shopcart" >
+    insert into shopcart (cart_id, user_id, seller_id, 
+      goods_id, goods_price, goods_name, 
+      quantity, status, create_time, 
+      update_time)
+    values (#{cartId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT}, #{goodsPrice,jdbcType=DOUBLE}, #{goodsName,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.Shopcart" >
+    insert into shopcart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        cart_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        #{cartId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.Shopcart" >
+    update shopcart
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.Shopcart" >
+    update shopcart
+    set user_id = #{userId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where cart_id = #{cartId,jdbcType=BIGINT}
+  </update>
+</mapper>

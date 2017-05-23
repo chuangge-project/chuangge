@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuangge.mapper.GoodsInventoryMapper" >
+  <resultMap id="BaseResultMap" type="com.chuangge.domain.GoodsInventory" >
+    <id column="tb_inventory_id" property="inventoryId" jdbcType="BIGINT" />
+    <result column="tb_goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="tb_warehouse_id" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="tb_sales_quantity" property="salesQuantity" jdbcType="INTEGER" />
+    <result column="tb_road_quantity" property="roadQuantity" jdbcType="INTEGER" />
+    <result column="tb_min_quantity" property="minQuantity" jdbcType="INTEGER" />
+    <result column="tb_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="tb_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tb.inventory_id as tb_inventory_id, tb.goods_id as tb_goods_id, tb.warehouse_id as tb_warehouse_id, 
+    tb.sales_quantity as tb_sales_quantity, tb.road_quantity as tb_road_quantity, tb.min_quantity as tb_min_quantity, 
+    tb.create_time as tb_create_time, tb.update_time as tb_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_inventory tb
+    where tb.inventory_id = #{inventoryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_inventory
+    where inventory_id = #{inventoryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chuangge.domain.GoodsInventory" >
+    insert into goods_inventory (inventory_id, goods_id, warehouse_id, 
+      sales_quantity, road_quantity, min_quantity, 
+      create_time, update_time)
+    values (#{inventoryId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{warehouseId,jdbcType=VARCHAR}, 
+      #{salesQuantity,jdbcType=INTEGER}, #{roadQuantity,jdbcType=INTEGER}, #{minQuantity,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chuangge.domain.GoodsInventory" >
+    insert into goods_inventory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="salesQuantity != null" >
+        sales_quantity,
+      </if>
+      <if test="roadQuantity != null" >
+        road_quantity,
+      </if>
+      <if test="minQuantity != null" >
+        min_quantity,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesQuantity != null" >
+        #{salesQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="roadQuantity != null" >
+        #{roadQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="minQuantity != null" >
+        #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chuangge.domain.GoodsInventory" >
+    update goods_inventory
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesQuantity != null" >
+        sales_quantity = #{salesQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="roadQuantity != null" >
+        road_quantity = #{roadQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="minQuantity != null" >
+        min_quantity = #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where inventory_id = #{inventoryId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chuangge.domain.GoodsInventory" >
+    update goods_inventory
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      sales_quantity = #{salesQuantity,jdbcType=INTEGER},
+      road_quantity = #{roadQuantity,jdbcType=INTEGER},
+      min_quantity = #{minQuantity,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where inventory_id = #{inventoryId,jdbcType=BIGINT}
+  </update>
+</mapper>
